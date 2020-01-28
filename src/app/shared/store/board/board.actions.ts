@@ -6,7 +6,20 @@ export const ActionTypes = {
   AI_TURN: type('[Board] AI Turn'),
   MY_TURN: type('[Board] My Turn'),
   RESET_GAME: type('[Board] Reset Game'),
+
+  ADD_POINTS_HUMAN: type('[Board] Add Points Human'),
+  ADD_POINTS_AI: type('[Board] Add Points AI'),
 };
+
+export class addPointsHumanAction implements Action {
+  type = ActionTypes.ADD_POINTS_HUMAN;
+  constructor(public payload: any) { }
+}
+
+export class addPointsAIAction implements Action {
+  type = ActionTypes.ADD_POINTS_AI;
+  constructor(public payload: any) { }
+}
 
 export class SetCellAction implements Action {
   type = ActionTypes.SET_CELL;
@@ -37,4 +50,6 @@ export type Actions
   | AITurnAction
   | SetCellAction
   | ResetGameAction
+  | addPointsHumanAction
+  | addPointsAIAction
   ;

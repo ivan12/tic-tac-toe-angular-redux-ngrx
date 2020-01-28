@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Store } from '@ngrx/store';
-import { State } from 'app/shared/store';
+import { selectorPointsAi, selectorPointsHuman, State } from 'app/shared/store';
 import { getBoardCells, getWinner } from '../../shared/store';
 import * as fromBoard from 'app/shared/store/board/board.actions';
 import { WinningModes } from 'app/shared/winner.service';
@@ -18,16 +18,34 @@ import 'rxjs/add/operator/debounceTime';
 export class TicTacToeComponent {
 
   public cells$: Observable<string[]>;
+  public pointsHuman$: Observable<number>;
+  public pointsAI$: Observable<number>;
 
   constructor(
     public store: Store<State>) {
     this.cells$ = store.select(getBoardCells);
+    this.pointsHuman$ = store.select(selectorPointsHuman);
+    this.pointsAI$ = store.select(selectorPointsAi);
 
     store.select(getWinner)
       .distinctUntilChanged()
-      .filter(winner => !!winner)
+      .filter(winner => winner == WinningModes.Win)
       .debounceTime(500)
-      .subscribe(winner => this.winning(winner));
+      .subscribe(winner => {
+        this.store.dispatch(new fromBoard.addPointsHumanAction( null));
+        this.pointsHuman$ = store.select(selectorPointsHuman);
+        this.winning(winner)
+      });
+
+    store.select(getWinner)
+      .distinctUntilChanged()
+      .filter(winner => winner == WinningModes.Lose)
+      .debounceTime(500)
+      .subscribe(winner => {
+        this.store.dispatch(new fromBoard.addPointsAIAction( null));
+        this.pointsAI$ = store.select(selectorPointsAi);
+        this.winning(winner)
+      });
   }
 
   update(cell: number) {
@@ -38,7 +56,10 @@ export class TicTacToeComponent {
 
     switch (winner) {
       case WinningModes.Draw: alert('it is a draw!'); break;
-      case WinningModes.Win: alert('you win!'); break;
+      case WinningModes.Win: {
+
+        alert('you win!');
+      } break;
       case WinningModes.Lose: alert('you lose!'); break;
     }
 

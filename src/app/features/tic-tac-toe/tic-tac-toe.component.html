@@ -1,9 +1,9 @@
-<h1> Tic Tac Toe </h1>
+<h1 class="title"> Tic Tac Toe </h1>
 
 <br><br>
 
 <div class="placar">
-  <i class="fa fa-user-o" aria-hidden="true"></i> 0 | <i class="fa fa-android" aria-hidden="true"></i> 0
+  <i class="fa fa-user-o" aria-hidden="true"></i> <span class="green">{{(pointsHuman$ | async)}}</span> | <i class="fa fa-android" aria-hidden="true"></i> <span class="red">{{(pointsAI$ | async)}}</span>
 </div>
 
 <p class="subTitle">

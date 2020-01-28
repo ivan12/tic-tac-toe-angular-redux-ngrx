@@ -1,12 +1,26 @@
+.title {
+  font: 32pt 'Oleo Script', Helvetica, sans-serif;
+  text-shadow: 4px 4px 0px rgba(0,0,0,0.1);
+}
+
 .subTitle {
-  font-family: "Abyssinica SIL";
-  font-size: medium;
+  font: large 'Oleo Script', Helvetica, sans-serif;
   color: #999999;
 }
 
 .placar {
-  background: #999999;
+  background: #E1E3E5;
   line-height: 45px;
   text-align: center;
   font-weight: bolder;
+  font: 22pt 'Oleo Script', Helvetica, sans-serif;
+  text-shadow: 4px 4px 0px rgba(0,0,0,0.1);
+}
+
+.red {
+  color: #e80404;
+}
+
+.green {
+  color: #037113;
 }

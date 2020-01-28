@@ -14,6 +14,9 @@ export const getWinningState = (state: State) => state.winning;
 export const getBoardCells = createSelector(getBoardState, fromBoard.getCells);
 export const getWinner = createSelector(getWinningState, fromWinning.getWinner);
 
+export const selectorPointsHuman = createSelector(getBoardState, fromBoard.getPointsHuman);
+export const selectorPointsAi = createSelector(getBoardState, fromBoard.getPointsAI);
+
 export interface State {
   board: fromBoard.State;
   winning: fromWinning.State;

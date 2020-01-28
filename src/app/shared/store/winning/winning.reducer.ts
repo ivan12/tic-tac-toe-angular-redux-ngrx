@@ -20,7 +20,6 @@ export function reducer(state = initialState, action: winning.Actions): State {
         }
 
         case winning.ActionTypes.WIN: {
-
             return Object.assign({}, state, <State>{
                 winner: WinningModes.Win
             });
