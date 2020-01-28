@@ -1,0 +1,12 @@
+.subTitle {
+  font-family: "Abyssinica SIL";
+  font-size: medium;
+  color: #999999;
+}
+
+.placar {
+  background: #999999;
+  line-height: 45px;
+  text-align: center;
+  font-weight: bolder;
+}

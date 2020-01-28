@@ -1,0 +1,12 @@
+<h1> Tic Tac Toe </h1>
+
+<br><br>
+
+<div class="placar">
+  <i class="fa fa-user-o" aria-hidden="true"></i> 0 | <i class="fa fa-android" aria-hidden="true"></i> 0
+</div>
+
+<p class="subTitle">
+  <br>Single Game, Good Luck!</p>
+<br>
+<app-board [cells]="cells$ | async" (reset)="reset()" (cell)="update($event)"></app-board>
