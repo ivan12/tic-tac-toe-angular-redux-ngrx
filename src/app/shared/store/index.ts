@@ -39,12 +39,20 @@ export function rootReducer(state: any, action: any) {
 }
 
 export function reducer(state: any, action: any) {
+  let newState = undefined;
   if (action.type === 'RESET_STORE') {
-    state = undefined;
+    let stateTemp: any = {...state};
+    let boardTemp: any = {...state.board};
+    let winningTemp: any = {...state.winning}
+    boardTemp.cells = ["", "", "", "", "", "", "", "", ""];
+    boardTemp.turn = 0;
+    stateTemp.board = boardTemp;
+    winningTemp.winner = null;
+    stateTemp.winning = winningTemp;
+    newState = rootReducer(stateTemp, action);
+  } else {
+    newState = rootReducer(state, action);
   }
-
-  const newState = rootReducer(state, action);
-
   return newState;
 };
 

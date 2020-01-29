@@ -37,7 +37,7 @@ export function reducer(state = initialState, action: fromBoard.Actions): State 
           let pointsAi = state.pointsAi;
           pointsAi++;
           return  Object.assign({}, state, <State>{
-            pointsHuman: pointsAi
+            pointsAi: pointsAi
           });
         }
 

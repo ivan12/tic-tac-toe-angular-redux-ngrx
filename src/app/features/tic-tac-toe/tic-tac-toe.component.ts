@@ -28,23 +28,17 @@ export class TicTacToeComponent {
     this.pointsAI$ = store.select(selectorPointsAi);
 
     store.select(getWinner)
-      .distinctUntilChanged()
       .filter(winner => winner == WinningModes.Win)
-      .debounceTime(500)
       .subscribe(winner => {
         this.store.dispatch(new fromBoard.addPointsHumanAction( null));
         this.pointsHuman$ = store.select(selectorPointsHuman);
-        this.winning(winner)
       });
 
     store.select(getWinner)
-      .distinctUntilChanged()
       .filter(winner => winner == WinningModes.Lose)
-      .debounceTime(500)
       .subscribe(winner => {
         this.store.dispatch(new fromBoard.addPointsAIAction( null));
         this.pointsAI$ = store.select(selectorPointsAi);
-        this.winning(winner)
       });
   }
 
@@ -57,7 +51,6 @@ export class TicTacToeComponent {
     switch (winner) {
       case WinningModes.Draw: alert('it is a draw!'); break;
       case WinningModes.Win: {
-
         alert('you win!');
       } break;
       case WinningModes.Lose: alert('you lose!'); break;
